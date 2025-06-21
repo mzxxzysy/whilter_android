@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "579478211609",
+    "project_id": "whilterfirebase",
+    "storage_bucket": "whilterfirebase.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579478211609:android:72006836ab850c12462e88",
+        "android_client_info": {
+          "package_name": "com.example.myproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579478211609-9sbb69g0m00s4pmgffutbldhjda4r0pq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJV2yTTwYax3vZ1mFbL9y8ovtvUbzw4Uk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "579478211609-9sbb69g0m00s4pmgffutbldhjda4r0pq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

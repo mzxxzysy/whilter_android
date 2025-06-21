@@ -1,0 +1,38 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="CookBook 설정">
+
+        <EditTextPreference
+            app:key="nickname"
+            app:title="닉네임"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="#FFD0E9"
+            app:entries="@array/my_color"
+            app:entryValues="@array/my_color_values"
+            app:key="color"
+            app:title="툴바 색상 설정"
+            app:useSimpleSummaryProvider="true" />
+
+        <SeekBarPreference
+            android:key="fontSize"
+            android:title="글자 크기 설정"
+            android:defaultValue="16"
+            android:min="10"
+            android:max="30"
+            app:showSeekBarValue="true"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:key="fontStyle"
+            app:title="글꼴 두께 설정"
+            app:entries="@array/my_font"
+            app:entryValues="@array/my_font_values"
+            app:defaultValue="regular"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

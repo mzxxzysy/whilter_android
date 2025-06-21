@@ -62,6 +62,8 @@ class AddActivity : AppCompatActivity() {
             .addOnSuccessListener { documentReference ->
                 Log.d("AddActivity", "Document added with ID: ${documentReference.id}")
                 Toast.makeText(this, "저장되었습니다.", Toast.LENGTH_SHORT).show()
+                val helper = MyNotificationHelper(this)
+                helper.showNotification("firestore", "리뷰가 추가되었습니다.")
 
                 // 저장 성공 후 액티비티 종료
                 val intent = Intent()

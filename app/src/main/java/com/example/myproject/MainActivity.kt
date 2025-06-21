@@ -3,15 +3,20 @@ package com.example.myproject
 import android.app.SearchManager
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.preference.PreferenceManager
@@ -43,6 +48,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){
+            if(it.all {permission -> permission.value != true}){
+                Toast.makeText(this, "permission Denied", Toast.LENGTH_SHORT).show()
+            }
+        }
+        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.TIRAMISU){
+            if(ContextCompat.checkSelfPermission(this,
+                    "android.permission.POST_NOTIFICATION")
+                != PackageManager.PERMISSION_GRANTED){
+                    permissionLauncher.launch(arrayOf("android.permission.POST_NOTIFICATION"))
+            }
+        }
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)

@@ -26,6 +26,8 @@ import androidx.recyclerview.widget.RecyclerView.Recycler
 import com.example.myproject.databinding.FragmentOneBinding
 import com.example.myproject.databinding.FragmentTwoBinding
 import com.example.myproject.databinding.ItemRecyclerviewBinding
+import com.google.firebase.Firebase
+import com.google.firebase.messaging.messaging
 import java.text.SimpleDateFormat
 
 private const val ARG_PARAM1 = "param1"
@@ -51,6 +53,11 @@ class TwoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentTwoBinding.inflate(inflater, container, false)
+
+//        Firebase.messaging.token.addOnSuccessListener {
+//            Log.d("TAG", it)
+//        }
+
 
         binding.addFab.setOnClickListener{
             if(MyApplication.checkAuth()){

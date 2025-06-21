@@ -66,4 +66,6 @@ dependencies {
     implementation("androidx.multidex:multidex:2.0.1")
 
     implementation("com.google.firebase:firebase-firestore:25.1.4")
+
+    implementation("com.google.firebase:firebase-messaging-ktx:24.1.1")
 }

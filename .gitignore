@@ -13,3 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
+fcm_node_server/server_key.json

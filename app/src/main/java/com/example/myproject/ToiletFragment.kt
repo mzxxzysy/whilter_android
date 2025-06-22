@@ -1,19 +1,20 @@
 package com.example.myproject
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myproject.databinding.FragmentToiletBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 class ToiletFragment : Fragment() {
     private var _binding: FragmentToiletBinding? = null
     private val binding get() = _binding!!
@@ -32,7 +33,12 @@ class ToiletFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        toiletAdapter = ToiletAdapter(toiletList)
+        toiletAdapter = ToiletAdapter(toiletList){ toiletInfo ->
+            val lat = toiletInfo.latitude.toDoubleOrNull()
+            val lon = toiletInfo.longitude.toDoubleOrNull()
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+lat+","+lon))
+            startActivity(intent)
+        }
         binding.toiletRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = toiletAdapter

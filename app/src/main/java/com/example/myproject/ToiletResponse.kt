@@ -15,5 +15,7 @@ data class ToiletInfo(
     @SerializedName("연번") val id: Int,
     @SerializedName("운영노선명") val line: String,
     @SerializedName("역명") val stationName: String,
-    @SerializedName("상세위치") val location: String
+    @SerializedName("상세위치") val location: String,
+    @SerializedName("위도") val latitude: String,
+    @SerializedName("경도") val longitude: String
 )

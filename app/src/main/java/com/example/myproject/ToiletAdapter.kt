@@ -7,7 +7,10 @@ import com.example.myproject.databinding.ItemStationBinding
 
 class ToiletViewHolder(val binding: ItemStationBinding): RecyclerView.ViewHolder(binding.root)
 
-class ToiletAdapter(private val datas: MutableList<ToiletInfo>): RecyclerView.Adapter<ToiletViewHolder>() {
+class ToiletAdapter(
+    private val datas: MutableList<ToiletInfo>,
+    private val onItemClick: (ToiletInfo) -> Unit
+) : RecyclerView.Adapter<ToiletViewHolder>() {
 
     override fun getItemCount(): Int {
         return datas.size
@@ -25,6 +28,12 @@ class ToiletAdapter(private val datas: MutableList<ToiletInfo>): RecyclerView.Ad
             station.text = toilet.stationName
             num.text = toilet.line
             location.text = toilet.location
+
+            root.setOnClickListener {
+                onItemClick(toilet)
+            }
+
         }
+
     }
 }

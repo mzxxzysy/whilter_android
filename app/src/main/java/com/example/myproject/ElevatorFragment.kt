@@ -12,9 +12,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class ElevatorFragment : Fragment() {
     private var _binding: FragmentElevatorBinding? = null
     private val binding get() = _binding!!

@@ -33,5 +33,6 @@ class MyAdapter(val datas: MutableList<ItemTwo>): RecyclerView.Adapter<MyViewHol
         binding.itemEmailView.text = model.email
         binding.itemDateView.text = model.date
         binding.itemContentView.text = model.content
+        binding.itemTitleView.text = model.title
     }
 }

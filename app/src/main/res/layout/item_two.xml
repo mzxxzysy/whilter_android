@@ -6,10 +6,34 @@
     android:orientation="vertical"
     android:paddingTop="10dp">
 
+    <TextView
+        android:id="@+id/itemTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:lineSpacingExtra="2dp"
+        android:paddingLeft="10dp"
+        android:textColor="#212121"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/itemContentView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:lineSpacingExtra="2dp"
+        android:paddingLeft="10dp"
+        android:textColor="#212121"
+        android:textSize="16sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
+        android:paddingLeft="15dp"
         android:paddingTop="10dp"
         android:orientation="horizontal">
 
@@ -30,17 +54,7 @@
 
     </LinearLayout>
 
-     <TextView
-        android:id="@+id/itemContentView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="10dp"
-        android:lineSpacingExtra="2dp"
-        android:paddingLeft="10dp"
-        android:textColor="#212121"
-        android:textSize="14sp" />
+
 
     <View
         android:layout_width="match_parent"

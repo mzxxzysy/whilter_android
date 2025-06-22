@@ -36,7 +36,15 @@ class AddActivity : AppCompatActivity() {
     }
 
     private fun saveData() {
+
+        val title = binding.addTitle.text.toString().trim()
         val content = binding.addEditView.text.toString().trim()
+
+        // 빈 내용 체크
+        if (title.isEmpty()) {
+            Toast.makeText(this, "제목을 입력해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
 
         // 빈 내용 체크
         if (content.isEmpty()) {
@@ -54,6 +62,7 @@ class AddActivity : AppCompatActivity() {
         val data = mapOf(
             "email" to MyApplication.email,
             "content" to content,
+            "title" to title,
             "date" to dateFormat.format(Date())
         )
 

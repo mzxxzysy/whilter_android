@@ -2,6 +2,8 @@ package com.example.myproject
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.preference.PreferenceManager
 import com.example.myproject.SettingActivity
 import com.example.myproject.databinding.ActivityMainBinding
 import com.example.myproject.databinding.FragmentThreeBinding
@@ -24,7 +27,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class ThreeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+    lateinit var sharedPreferences: SharedPreferences
     private var param1: String? = null
     private var param2: String? = null
 
@@ -98,9 +101,37 @@ class ThreeFragment : Fragment() {
         if(MyApplication.checkAuth()) {
             status.text = "로그아웃"
             user.text = "${MyApplication.email}님\n반갑습니다"
+            binding.setting.visibility = View.VISIBLE  // 로그인 상태일 때 설정 버튼 보이기
         } else {
             status.text = "로그인"
-            user.text = "안녕하세요"
+            user.text = "로그인을 해주세요"
+            binding.setting.visibility = View.GONE     // 로그아웃 상태일 때 설정 버튼 숨기기
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+
+        val fontSize = sharedPreferences.getInt("fontSize", 16)
+        binding.setting.textSize = fontSize + 1f
+        binding.user.textSize = fontSize + 1f
+        binding.login.textSize = fontSize + 1f
+
+        val fontStyle = sharedPreferences.getString("fontStyle", "normal")
+
+        val styleValue = when(fontStyle) {
+            "bold" -> Typeface.BOLD
+            else -> Typeface.NORMAL
+        }
+
+        binding.setting.setTypeface(null, styleValue)
+        binding.user.setTypeface(null, styleValue)
+        binding.login.setTypeface(null, styleValue)
+
+
+        val idPre = sharedPreferences.getString ("nickname","")
+        binding.user.text = idPre
     }
 }

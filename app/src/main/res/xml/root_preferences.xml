@@ -13,7 +13,7 @@
             app:entries="@array/my_color"
             app:entryValues="@array/my_color_values"
             app:key="color"
-            app:title="툴바 색상 설정"
+            app:title="테마 설정"
             app:useSimpleSummaryProvider="true" />
 
         <SeekBarPreference

@@ -1,10 +1,14 @@
 package com.example.myproject
 
+import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import com.example.myproject.databinding.ActivityAuthBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -13,6 +17,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 
 class AuthActivity : AppCompatActivity() {
     lateinit var binding: ActivityAuthBinding
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -140,7 +145,11 @@ class AuthActivity : AppCompatActivity() {
         when(mode) {
             "login" -> {
                 binding.run {
-                    authMainTextView.text = "반갑습니다."
+                    authMainTextView.apply {
+                        text = "로그아웃을 하시겠습니까?"
+                        setPadding(50,0,20,0)
+                        textSize = 20f
+                    }
                     logoutBtn.visibility = View.VISIBLE
                     goSignInBtn.visibility = View.GONE
                     googleLoginBtn.visibility = View.GONE
@@ -152,7 +161,11 @@ class AuthActivity : AppCompatActivity() {
             }
             "logout" -> {
                 binding.run {
-                    authMainTextView.text = "로그인 하거나 회원가입 해주세요."
+                    authMainTextView.apply {
+                        text = "로그인 하거나 회원가입 해주세요."
+                        setPadding(50,0,20,0)
+                        textSize = 20f
+                    }
                     logoutBtn.visibility = View.GONE
                     goSignInBtn.visibility = View.VISIBLE
                     googleLoginBtn.visibility = View.VISIBLE
@@ -164,7 +177,11 @@ class AuthActivity : AppCompatActivity() {
             }
             "signin" -> {
                 binding.run {
-                    authMainTextView.text = "회원가입을 진행해주세요."
+                    authMainTextView.apply {
+                        text = "회원가입을 진행해주세요."
+                        setPadding(50,0,20,0)
+                        textSize = 20f
+                    }
                     logoutBtn.visibility = View.GONE
                     goSignInBtn.visibility = View.GONE
                     googleLoginBtn.visibility = View.GONE
@@ -175,5 +192,39 @@ class AuthActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val colorPre = sharedPreferences.getString("color", "#D9D9D9")
+        binding.toolbar.setBackgroundColor(Color.parseColor(colorPre))
+        binding.logoutBtn.setBackgroundColor(Color.parseColor(colorPre))
+        binding.goSignInBtn.setBackgroundColor(Color.parseColor(colorPre))
+        binding.googleLoginBtn.setBackgroundColor(Color.parseColor(colorPre))
+        binding.signBtn.setBackgroundColor(Color.parseColor(colorPre))
+        binding.loginBtn.setBackgroundColor(Color.parseColor(colorPre))
+
+        val fontSize = sharedPreferences.getInt("fontSize", 16)
+        binding.logoutBtn.textSize = fontSize + 1f
+        binding.goSignInBtn.textSize = fontSize + 1f
+        binding.googleLoginBtn.textSize = fontSize + 1f
+        binding.signBtn.textSize = fontSize + 1f
+        binding.loginBtn.textSize = fontSize + 1f
+
+
+        val fontStyle = sharedPreferences.getString("fontStyle", "normal")
+        val styleValue = when(fontStyle) {
+            "bold" -> Typeface.BOLD
+            else -> Typeface.NORMAL
+        }
+        binding.logoutBtn.setTypeface(null, styleValue)
+        binding.goSignInBtn.setTypeface(null, styleValue)
+        binding.googleLoginBtn.setTypeface(null, styleValue)
+        binding.signBtn.setTypeface(null, styleValue)
+        binding.loginBtn.setTypeface(null, styleValue)
+
+
     }
 }

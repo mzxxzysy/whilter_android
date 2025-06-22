@@ -16,10 +16,10 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#FFD0E9"
+            android:background="#D9D9D9"
             android:elevation="4dp"
             app:theme="@style/ToolbarIconColor"
-            app:titleTextColor="#FFFFFF"/>
+            app:titleTextColor="@color/black"/>
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewpager"

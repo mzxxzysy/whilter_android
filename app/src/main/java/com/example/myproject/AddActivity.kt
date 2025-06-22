@@ -2,19 +2,21 @@ package com.example.myproject
 
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.preference.PreferenceManager
 import com.example.myproject.databinding.ActivityAddBinding
 import java.text.SimpleDateFormat
 import java.util.Date
 
 class AddActivity : AppCompatActivity() {
     lateinit var binding: ActivityAddBinding
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,5 +85,24 @@ class AddActivity : AppCompatActivity() {
         setResult(Activity.RESULT_CANCELED, intent)
         finish()
         return true
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val colorPre = sharedPreferences.getString("color", "#D9D9D9")
+        binding.addToolbar.setBackgroundColor(Color.parseColor(colorPre))
+        binding.btnSave.setBackgroundColor(Color.parseColor(colorPre))
+
+        val fontSize = sharedPreferences.getInt("fontSize", 16)
+        binding.btnSave.textSize = fontSize + 1f
+
+        val fontStyle = sharedPreferences.getString("fontStyle", "normal")
+        val styleValue = when(fontStyle) {
+            "bold" -> Typeface.BOLD
+            else -> Typeface.NORMAL
+        }
+        binding.btnSave.setTypeface(null, styleValue)
     }
 }

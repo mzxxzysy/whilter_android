@@ -1,11 +1,6 @@
 package com.example.myproject
 
-import android.app.Service
-import android.content.Intent
-import android.os.IBinder
 import android.util.Log
-import androidx.core.content.ContentProviderCompat.requireContext
-import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
@@ -17,7 +12,6 @@ class MyFirebaseMessageService : FirebaseMessagingService() {
         if(message.data.isNotEmpty()){
             Log.d("TAG", "${message.data}")
 
-            // 알림
             val helper = MyNotificationHelper(this)
             helper.showNotification(message.data.get("title"), message.data.get("value"))
         }

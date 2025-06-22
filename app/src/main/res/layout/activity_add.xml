@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#ffaacc">
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/add_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"/>
+        android:background="#D9D9D9"/>
 
     <TextView
+        android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="등록"
-        android:textSize="15dp"
-        android:id="@+id/date"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="50dp"
-        android:textColor="@android:color/darker_gray"/>
+        android:layout_marginTop="20dp"
+        android:text="2024-01-01"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:padding="10dp" />
 
     <EditText
         android:id="@+id/add_editView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="후기를 남겨보세요."
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
         android:inputType="text"/>
 
     <Button
@@ -38,6 +39,10 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="저장"
+        android:textSize="20dp"
+        android:textStyle="normal"
+        android:textColor="@color/black"
         android:id="@+id/btnSave"
-        android:layout_marginTop="200dp" />
+        android:backgroundTint="#D9D9D9"
+        android:layout_marginTop="200dp"/>
 </LinearLayout>

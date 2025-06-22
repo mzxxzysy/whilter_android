@@ -1,16 +1,16 @@
 <resources>
     <!-- Reply Preference -->
     <string-array name="my_color">
-        <item>분홍</item>
-        <item>주황</item>
-        <item>보라</item>
+        <item>심플</item>
+        <item>웜</item>
+        <item>러블리</item>
 
     </string-array>
 
     <string-array name="my_color_values">
-        <item>#FFD0E9</item>
-        <item>#FFCCBA</item>
-        <item>#F9D1F9</item>
+        <item>#D9D9D9</item>
+        <item>#E5D3C5</item>
+        <item>#FFE1F1</item>
 
     </string-array>
 

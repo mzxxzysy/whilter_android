@@ -40,27 +40,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-//        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-//        val idPre = sharedPreferences.getString("name", "닉네임")
-//        val colorPre = sharedPreferences.getString("color", "#FFD0E9")
-//
-
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){
-            if(it.all {permission -> permission.value != true}){
-                Toast.makeText(this, "permission Denied", Toast.LENGTH_SHORT).show()
-            }
-        }
-        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.TIRAMISU){
-            if(ContextCompat.checkSelfPermission(this,
-                    "android.permission.POST_NOTIFICATION")
-                != PackageManager.PERMISSION_GRANTED){
-                    permissionLauncher.launch(arrayOf("android.permission.POST_NOTIFICATION"))
-            }
-        }
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
@@ -91,10 +73,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onResume()
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val colorPre = sharedPreferences.getString("color", "#FFD0E9")
-        val fontSize = sharedPreferences.getInt("fontSize", 16)
-
+        val colorPre = sharedPreferences.getString("color", "#D9D9D9")
         binding.toolbar.setBackgroundColor(Color.parseColor(colorPre))
+
+        val fontSize = sharedPreferences.getInt("fontSize", 16)
+        val fontStyle = sharedPreferences.getString("fontStyle", "regular")
+
 
 
     }

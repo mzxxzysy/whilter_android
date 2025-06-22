@@ -1,7 +1,9 @@
 package com.example.myproject
 
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myproject.databinding.ItemStationBinding
 
@@ -20,11 +22,27 @@ class LiftAdapter(private val datas: MutableList<LiftInfo>): RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: LiftViewHolder, position: Int) {
         val lift = datas[position]
+        val binding = holder.binding
 
-        holder.binding.apply {
-            station.text = lift.stationName
-            num.text = lift.line
-            location.text = lift.location
+        binding.station.text = lift.stationName
+        binding.num.text = lift.line
+        binding.location.text = lift.location
+
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(binding.root.context)
+
+        val fontSize = sharedPreferences.getInt("fontSize", 16)
+        val fontStyle = sharedPreferences.getString("fontStyle", "normal")
+        val styleValue = when (fontStyle) {
+            "bold" -> Typeface.BOLD
+            else -> Typeface.NORMAL
         }
+
+        holder.binding.station.textSize = fontSize + 1f
+        binding.num.textSize = fontSize + 1f
+        binding.location.textSize = fontSize + 1f
+
+        binding.station.setTypeface(null, styleValue)
+        binding.num.setTypeface(null, styleValue)
+        binding.location.setTypeface(null, styleValue)
     }
 }

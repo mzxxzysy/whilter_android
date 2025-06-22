@@ -1,8 +1,12 @@
 package com.example.myproject
 
+import android.content.SharedPreferences
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myproject.databinding.ItemTwoBinding
 
@@ -14,7 +18,11 @@ import com.example.myproject.databinding.ItemTwoBinding
 
 class MyViewHolder(val binding: ItemTwoBinding) : RecyclerView.ViewHolder(binding.root)
 
-class MyAdapter(val datas: MutableList<ItemTwo>): RecyclerView.Adapter<MyViewHolder>() {
+class MyAdapter(
+    private val datas: MutableList<ItemTwo>,
+    private val fontSize: Int
+) : RecyclerView.Adapter<MyViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -34,5 +42,11 @@ class MyAdapter(val datas: MutableList<ItemTwo>): RecyclerView.Adapter<MyViewHol
         binding.itemDateView.text = model.date
         binding.itemContentView.text = model.content
         binding.itemTitleView.text = model.title
+
+        binding.itemTitleView.textSize = (fontSize + 5).toFloat()
+        binding.itemContentView.textSize = fontSize.toFloat()
+        binding.itemEmailView.textSize = (fontSize - 7).toFloat()
+        binding.itemDateView.textSize = (fontSize - 7).toFloat()
     }
+
 }

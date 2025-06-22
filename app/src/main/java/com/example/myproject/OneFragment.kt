@@ -7,10 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.myproject.databinding.ActivityMainBinding
 import com.example.myproject.databinding.FragmentOneBinding
 import com.google.android.material.tabs.TabLayoutMediator
 

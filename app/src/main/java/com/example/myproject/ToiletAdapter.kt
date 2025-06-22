@@ -1,7 +1,9 @@
 package com.example.myproject
 
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myproject.databinding.ItemStationBinding
 
@@ -23,17 +25,31 @@ class ToiletAdapter(
 
     override fun onBindViewHolder(holder: ToiletViewHolder, position: Int) {
         val toilet = datas[position]
+        val binding = holder.binding
 
-        holder.binding.apply {
-            station.text = toilet.stationName
-            num.text = toilet.line
-            location.text = toilet.location
+        binding.station.text = toilet.stationName
+        binding.num.text = toilet.line
+        binding.location.text = toilet.location
 
-            root.setOnClickListener {
-                onItemClick(toilet)
-            }
-
+        binding.root.setOnClickListener {
+            onItemClick(toilet)
         }
 
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(binding.root.context)
+
+        val fontSize = sharedPreferences.getInt("fontSize", 16)
+        val fontStyle = sharedPreferences.getString("fontStyle", "normal")
+        val styleValue = when (fontStyle) {
+            "bold" -> Typeface.BOLD
+            else -> Typeface.NORMAL
+        }
+
+        holder.binding.station.textSize = fontSize + 1f
+        binding.num.textSize = fontSize + 1f
+        binding.location.textSize = fontSize + 1f
+
+        binding.station.setTypeface(null, styleValue)
+        binding.num.setTypeface(null, styleValue)
+        binding.location.setTypeface(null, styleValue)
     }
 }

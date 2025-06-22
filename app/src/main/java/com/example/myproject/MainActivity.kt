@@ -29,9 +29,8 @@ import java.util.prefs.Preferences
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var binding: ActivityMainBinding
-    lateinit var sharedPreferences: SharedPreferences
 
-    class MyFragmentPagerAdapter(activity: FragmentActivity): FragmentStateAdapter(activity){
+    class MyFragmentPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
         val fragments: List<Fragment> = listOf(OneFragment(), TwoFragment(), ThreeFragment())
 
         override fun getItemCount(): Int = fragments.size
@@ -54,7 +53,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         TabLayoutMediator(binding.tabs, binding.viewpager) { tab, position ->
             when (position) {
                 0 -> tab.setIcon(R.drawable.home)
-                1 -> tab.setIcon(R.drawable.star)
+                1 -> tab.setIcon(R.drawable.board)
                 2 -> tab.setIcon(R.drawable.mypage)
             }
         }.attach()
@@ -67,19 +66,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         binding.main.closeDrawers()
         return false
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val colorPre = sharedPreferences.getString("color", "#D9D9D9")
-        binding.toolbar.setBackgroundColor(Color.parseColor(colorPre))
-
-        val fontSize = sharedPreferences.getInt("fontSize", 16)
-        val fontStyle = sharedPreferences.getString("fontStyle", "regular")
-
-
-
     }
 }

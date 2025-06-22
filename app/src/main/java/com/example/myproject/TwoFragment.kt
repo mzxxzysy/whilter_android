@@ -58,7 +58,8 @@ class TwoFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         if(MyApplication.checkAuth()) {
-            binding.mainRecyclerView.visibility = View.VISIBLE
+            binding.itemView.visibility = View.VISIBLE
+            binding.loginView.visibility = View.GONE
 
             sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
             val fontSize = sharedPreferences.getInt("fontSize", 16)
@@ -79,7 +80,13 @@ class TwoFragment : Fragment() {
                     Toast.makeText(requireContext(), "데이터 획득 실패", Toast.LENGTH_SHORT).show()
                 }
         } else {
-            binding.mainRecyclerView.visibility = View.GONE
+            binding.itemView.visibility = View.GONE
+            binding.loginView.visibility = View.VISIBLE
+
+            binding.login.setOnClickListener{
+                val intent = Intent(requireContext(), AuthActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
